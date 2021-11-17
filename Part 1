@@ -1,0 +1,40 @@
+const redux = require("redux");
+
+const iniState = {
+  num: 0,
+};
+const rootreducer = function (state = iniState, action) {
+  if (action.type === "INC_NUM") {
+    return {
+      ...state,
+      num: state.num + 10,
+    };
+  }
+  if (action.type === "ADD_NUM") {
+    return {
+      ...state,
+      num: state.num + action.value,
+    };
+  }
+
+  return state;
+};
+const store = redux.createStore(rootreducer);
+
+console.log(store);
+console.log(store.getState());
+
+// Dispatching action
+
+store.dispatch({
+  type: "INC_NUM",
+});
+
+console.log(store.getState());
+
+store.dispatch({
+  type: "ADD_NUM",
+  value: 30,
+});
+
+console.log(store.getState());
